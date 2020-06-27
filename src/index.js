@@ -1,8 +1,10 @@
+import "./css/styles.css";
+
 var emailFieldComponent = {
   default: {
     emailList: [],
   },
-  initComponent: console.log("TODO"),
+  initComponent: () => console.log("TODO"),
 };
 
 function click() {
@@ -26,7 +28,6 @@ function createButton(id, text, onclick) {
   button.setAttribute("class", "buttons");
   button.innerHTML = text;
   document.getElementById("mainWrapperEmails").appendChild(button);
-  // assuming elements contains string of html with your elements
 }
 
 function createEmailBubble(fieldValue) {
@@ -42,10 +43,16 @@ function createEmailBubble(fieldValue) {
   bubble.innerHTML = fieldValue;
 
   bubble.onclick = function () {
+    emailFieldComponent.default.emailList = emailFieldComponent.default.emailList.filter(
+      (e) => e !== fieldValue
+    );
+    console.log(emailFieldComponent.default.emailList);
     bubble.remove();
     return false;
   };
+
   document.getElementById("emailsField").prepend(bubble);
+  emailFieldComponent.default.emailList.push(fieldValue);
 }
 
 function handleFieldChange(e) {
@@ -93,11 +100,11 @@ function createEmailsField() {
 
 // Loading function
 document.addEventListener("DOMContentLoaded", function () {
-  var link = document.createElement("link");
-  link.href = "CSS/styles.css";
-  link.type = "text/css";
-  link.rel = "stylesheet";
-  document.getElementsByTagName("head")[0].appendChild(link);
+  // var link = document.createElement("link");
+  // link.href = "CSS/styles.css";
+  // link.type = "text/css";
+  // link.rel = "stylesheet";
+  // document.getElementsByTagName("head")[0].appendChild(link);
   initField();
   createEmailsField();
   createButton("button1", "Add Email", click);

@@ -1,0 +1,27 @@
+{
+  "name": "Miro",
+  "version": "1.0.0",
+  "description": "Is like :mind_blown: you can click it, scroll it, resize it, it does everything am iPhone can do and more.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jose-bustamante/EmailsFieldVanilla.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jose-bustamante/EmailsFieldVanilla/issues"
+  },
+  "homepage": "https://github.com/jose-bustamante/EmailsFieldVanilla#readme",
+  "devDependencies": {
+    "css-loader": "^3.6.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "private": true
+}
