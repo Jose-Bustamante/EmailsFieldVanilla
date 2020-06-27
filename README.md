@@ -1,6 +1,6 @@
 # Email Magician
 
-Is like :mind_blown: you can click it, scroll it, resize it, it does everything am iPhone can do and more.
+Is like 🤯 you can click it, scroll it, resize it, it does everything am iPhone can do and more.
 
 ## Description
 
