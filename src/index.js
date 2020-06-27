@@ -1,4 +1,5 @@
 import "./css/styles.css";
+import { createButton } from "./components/EmailButton";
 
 var emailFieldComponent = {
   default: {
@@ -17,18 +18,18 @@ function initField() {
     '<div class="mainWrapper" id="mainWrapperEmails" onclick="click()"><div class="emailContainer" id="emailContainer"><span class="headerText">Share <b>Board name</b> with others</span></div></div>';
 }
 
-function createButton(id, text, onclick) {
-  var button = document.createElement("button");
-  button.id = id;
-  button.setAttribute("content", text);
-  button.onclick = function () {
-    onclick();
-    return false;
-  };
-  button.setAttribute("class", "buttons");
-  button.innerHTML = text;
-  document.getElementById("mainWrapperEmails").appendChild(button);
-}
+// function createButton(id, text, onclick) {
+//   var button = document.createElement("button");
+//   button.id = id;
+//   button.setAttribute("content", text);
+//   button.onclick = function () {
+//     onclick();
+//     return false;
+//   };
+//   button.setAttribute("class", "buttons");
+//   button.innerHTML = text;
+//   document.getElementById("mainWrapperEmails").appendChild(button);
+// }
 
 function createEmailBubble(fieldValue) {
   var pattern = new RegExp(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
@@ -109,4 +110,5 @@ document.addEventListener("DOMContentLoaded", function () {
   createEmailsField();
   createButton("button1", "Add Email", click);
   createButton("button2", "Get Emails Count", click);
+  // console.log("ASDSAD");
 });
