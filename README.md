@@ -1,7 +1,7 @@
 # Email Magician
 
 Is like 🤯 you can click it, scroll it, resize it, it does everything am iPhone can do and more.
-Example Demo [Demo](./dist/index.html)
+Example [Demo](./dist/index.html)
 
 ## Description
 
