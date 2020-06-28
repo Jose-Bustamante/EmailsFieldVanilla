@@ -1,6 +1,7 @@
-export function createEmailBubble(fieldValue, emailFieldComponent) {
-  var pattern = new RegExp(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
-  var isValidEmail = pattern.test(fieldValue);
+import isValidEmailCheck from "../utils/isValidEmail";
+
+export function createEmailBubble(fieldValue) {
+  var isValidEmail = isValidEmailCheck(fieldValue);
 
   var bubble = document.createElement("div");
 
@@ -11,13 +12,12 @@ export function createEmailBubble(fieldValue, emailFieldComponent) {
   bubble.innerHTML = fieldValue;
 
   bubble.onclick = function () {
-    emailFieldComponent.default.emailList = emailFieldComponent.default.emailList.filter(
+    window.emailFieldComponent.default.emailList = window.emailFieldComponent.default.emailList.filter(
       (e) => e !== fieldValue
     );
     bubble.remove();
     return false;
   };
-
   document.getElementById("emailsField").prepend(bubble);
-  emailFieldComponent.default.emailList.push(fieldValue);
+  window.emailFieldComponent.default.emailList.push(fieldValue);
 }

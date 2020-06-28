@@ -1,6 +1,6 @@
 import { createEmailBubble } from "./EmailBubble";
 
-function handleFieldChange(e, emailFieldComponent) {
+function handleFieldChange(e) {
   var field = document.getElementById(e.target.getAttribute("id"));
   var fieldValue = e.target.value;
   var keynum;
@@ -12,12 +12,24 @@ function handleFieldChange(e, emailFieldComponent) {
     keynum = e.which;
   }
   if (keynum == 9 || keynum == 32 || keynum == 188 || keynum == 13) {
-    createEmailBubble(fieldValue, emailFieldComponent);
+    if (fieldValue.length) {
+      createEmailBubble(fieldValue);
+    }
     field.value = "";
   }
 }
 
-function handlePaste(e, emailFieldComponent) {
+function handleOnBlur(e) {
+  var fieldValue = e.target.value;
+  if (fieldValue.length) {
+    var field = document.getElementById(e.target.getAttribute("id"));
+
+    createEmailBubble(fieldValue);
+    field.value = "";
+  }
+}
+
+function handlePaste(e) {
   var pastedText = "";
   if (typeof e.clipboardData === "undefined")
     // IE11 & Edge support
@@ -29,12 +41,12 @@ function handlePaste(e, emailFieldComponent) {
   var field = document.getElementById(e.target.getAttribute("id"));
 
   for (var i = 0, len = pastedTestArray.length; i !== len; i++) {
-    createEmailBubble(pastedTestArray[i], emailFieldComponent);
+    createEmailBubble(pastedTestArray[i]);
   }
   field.value = "";
 }
 
-export function createEmailsField(emailFieldComponent) {
+export function createEmailsField() {
   var emailsField = document.createElement("div");
   var emailsInput = document.createElement("input");
 
@@ -49,11 +61,15 @@ export function createEmailsField(emailFieldComponent) {
   emailsInput.setAttribute("type", "email");
   emailsInput.setAttribute("id", "emailTextField");
   emailsInput.onkeyup = function (e) {
-    handleFieldChange(e, emailFieldComponent);
+    handleFieldChange(e);
+    return false;
+  };
+  emailsInput.onblur = function (e) {
+    handleOnBlur(e);
     return false;
   };
   emailsInput.onpaste = function (e) {
-    handlePaste(e, emailFieldComponent);
+    handlePaste(e);
     return false;
   };
 

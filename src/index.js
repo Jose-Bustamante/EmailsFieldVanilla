@@ -1,8 +1,10 @@
 import "./css/styles.css";
 import { createButton } from "./components/EmailButton";
 import { createEmailsField } from "./components/EmailsField";
+import { createEmailBubble } from "./components/EmailBubble";
+import isValidEmailCheck from "./utils/isValidEmail";
 
-var emailFieldComponent = {
+window.emailFieldComponent = {
   default: {
     emailList: [],
   },
@@ -29,14 +31,28 @@ function initField() {
   document.body.appendChild(mainWrapper);
 }
 
-function click() {
-  console.log("On click asda ");
+function addRandomEmail() {
+  const emailText = Math.random().toString(36).substring(2, 11) + "@email.com";
+  createEmailBubble(emailText);
+}
+
+function getEmails() {
+  var validEmails = [];
+  for (
+    var i = 0, len = window.emailFieldComponent.default.emailList.length;
+    i !== len;
+    i++
+  ) {
+    var email = window.emailFieldComponent.default.emailList[i];
+    if (isValidEmailCheck(email)) validEmails.push(email);
+  }
+  alert(validEmails);
 }
 
 // Loading function
 document.addEventListener("DOMContentLoaded", function () {
   initField();
-  createEmailsField(emailFieldComponent);
-  createButton("button1", "Add Email", click);
-  createButton("button2", "Get Emails Count", click);
+  createEmailsField();
+  createButton("button1", "Add Email", addRandomEmail);
+  createButton("button2", "Get Emails Count", getEmails);
 });

@@ -18,9 +18,8 @@
   box-sizing: border-box;
   border-radius: 4px;
   min-width: 440px;
-  min-height: 96px;
+  height: 96px;
   padding: 8px;
-  max-height: 200px;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -42,6 +41,7 @@
   text-align: right;
   padding: 0 10px;
   cursor: pointer;
+  margin: 2px;
 }
 
 .emailBublesInvalid {
