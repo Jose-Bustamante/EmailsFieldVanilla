@@ -1,5 +1,5 @@
 import { createEmailBubble } from "./EmailBubble";
-import isIE11 from "../utils/isIE11";
+import { checkBrowser } from "../utils/browserUtils";
 
 function handleFieldChange(e) {
   var field = document.getElementById(e.target.getAttribute("id"));
@@ -20,14 +20,19 @@ function handleFieldChange(e) {
         field.value = "";
         break;
       case 32:
-        if (isIE11())
-          fieldValue = fieldValue.substring(0, fieldValue.length - 1);
-        createEmailBubble(fieldValue);
+        if (fieldValue !== " ") {
+          const browser = checkBrowser();
+          if (browser === "IE11" || browser === "Firefox")
+            fieldValue = fieldValue.substring(0, fieldValue.length - 1);
+          createEmailBubble(fieldValue);
+        }
         field.value = "";
         break;
       case 188:
-        fieldValue = fieldValue.substring(0, fieldValue.length - 1);
-        createEmailBubble(fieldValue);
+        if (fieldValue !== ",") {
+          fieldValue = fieldValue.substring(0, fieldValue.length - 1);
+          createEmailBubble(fieldValue);
+        }
         field.value = "";
         break;
       default:

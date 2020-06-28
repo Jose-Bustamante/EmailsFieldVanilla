@@ -1,5 +1,5 @@
 import isValidEmailCheck from "../utils/isValidEmail";
-import isIE11 from "../utils/isIE11";
+import { checkBrowser } from "../utils/browserUtils";
 
 export function createEmailBubble(fieldValue) {
   var isValidEmail = isValidEmailCheck(fieldValue);
@@ -15,7 +15,7 @@ export function createEmailBubble(fieldValue) {
     window.emailFieldComponent.default.emailList = window.emailFieldComponent.default.emailList.filter(
       (e) => e !== fieldValue
     );
-    if (isIE11()) bubble.parentNode.removeChild(bubble);
+    if (checkBrowser() === "IE11") bubble.parentNode.removeChild(bubble);
     else bubble.remove();
     return false;
   };
