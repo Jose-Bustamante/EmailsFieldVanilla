@@ -10,8 +10,23 @@ var emailFieldComponent = {
 };
 
 function initField() {
-  document.body.innerHTML +=
-    '<div class="mainWrapper" id="mainWrapperEmails"><div class="emailContainer" id="emailContainer"><span class="headerText">Share <b>Board name</b> with others</span></div></div>';
+  var mainWrapper = document.createElement("div");
+  mainWrapper.setAttribute("class", "mainWrapper");
+  mainWrapper.setAttribute("id", "mainWrapperEmails");
+
+  var emailContainer = document.createElement("div");
+  emailContainer.setAttribute("class", "emailContainer");
+  emailContainer.setAttribute("id", "emailContainer");
+  emailContainer.innerHTML +=
+    '<span class="headerText">Share <b>Board name</b> with others</span>';
+
+  var emailButtonsContainer = document.createElement("div");
+  emailButtonsContainer.setAttribute("class", "emailButtonsContainer");
+  emailButtonsContainer.setAttribute("id", "emailButtonsContainer");
+
+  mainWrapper.appendChild(emailContainer);
+  mainWrapper.appendChild(emailButtonsContainer);
+  document.body.appendChild(mainWrapper);
 }
 
 function click() {

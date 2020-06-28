@@ -6,7 +6,7 @@ export function createButton(id, text, onclick) {
     onclick();
     return false;
   };
-  button.setAttribute("class", "buttons");
+  button.setAttribute("class", "emailButtons");
   button.innerHTML = text;
-  document.getElementById("mainWrapperEmails").appendChild(button);
+  document.getElementById("emailButtonsContainer").appendChild(button);
 }
