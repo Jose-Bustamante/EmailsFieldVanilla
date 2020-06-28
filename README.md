@@ -9,33 +9,38 @@ This component is way too good to be used, please DON'T, side effects may apply,
 
 ## Getting Started
 
-### Dependencies
+- download the project built version [here](./dist/main.js)
 
-- A device manufactured earlier than 1996.
+```
+    // This on your html file
+    <script src="main.js"></script>
 
-### Installing
+```
 
-- This is an excelent question.
+### How to use
+
+- An EmailComponent will be created by importing the file in your HTML automatically.
+- You can add more components by using initComponent(id:String)
+
+```
+  <script>
+    window.emailFieldComponent.initComponent("dos");
+  </script>
+```
 
 ### Executing program
 
-- What program?
+- local development
 
 ```
-Put some console.logs here so they know you know.
+npm run start:dev
 ```
 
-## Help
-
-Yes please, send it.
+- build
 
 ```
-If you run into issues, deep breath and remember, everyone can have a bad day.
+npm run build
 ```
-
-## Authors
-
-Me but please do not try to contact me.
 
 ## Version History
 
@@ -45,12 +50,3 @@ Me but please do not try to contact me.
 ## License
 
 This project is licensed under the [MIT] License - If you are using this project as a guide line, you are really lost my friend.
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-
-- [Key for development](https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp)
-- [Where everything started](https://www.w3schools.com/html/default.asp)
-- [core](https://www.w3schools.com/tags/tag_input.asp)
-- [never stop learning](https://www.w3schools.com/jsref/met_element_addeventlistener.asp)
