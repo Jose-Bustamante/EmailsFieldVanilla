@@ -141,5 +141,7 @@
 .emailsInput:focus {
   border: transparent;
   outline: none;
-  width: 90%;
+  max-width: 90%;
+  width: auto;
+  min-width: 30%;
 }

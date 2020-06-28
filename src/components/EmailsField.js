@@ -1,9 +1,8 @@
 import { createEmailBubble } from "./EmailBubble";
 
 function handleFieldChange(e, emailFieldComponent) {
-  // console.log("AQUI -->", emailFieldComponent);
-  var field = document.getElementById("emailTextField");
-  var fieldValue = field.value;
+  var field = document.getElementById(e.target.getAttribute("id"));
+  var fieldValue = e.target.value;
   var keynum;
   if (window.event) {
     // IE
@@ -16,8 +15,23 @@ function handleFieldChange(e, emailFieldComponent) {
     createEmailBubble(fieldValue, emailFieldComponent);
     field.value = "";
   }
+}
 
-  e.preventDefault();
+function handlePaste(e, emailFieldComponent) {
+  var pastedText = "";
+  if (typeof e.clipboardData === "undefined")
+    // IE11 & Edge support
+    pastedText = window.clipboardData.getData("Text");
+  else pastedText = e.clipboardData.getData("text/plain");
+
+  var pastedTestArray = pastedText.split(/[ ,]+/);
+
+  var field = document.getElementById(e.target.getAttribute("id"));
+
+  for (var i = 0, len = pastedTestArray.length; i !== len; i++) {
+    createEmailBubble(pastedTestArray[i], emailFieldComponent);
+  }
+  field.value = "";
 }
 
 export function createEmailsField(emailFieldComponent) {
@@ -39,7 +53,8 @@ export function createEmailsField(emailFieldComponent) {
     return false;
   };
   emailsInput.onpaste = function (e) {
-    console.log("paste", e.value);
+    handlePaste(e, emailFieldComponent);
+    return false;
   };
 
   emailsInput.setAttribute("multiple", "true");
