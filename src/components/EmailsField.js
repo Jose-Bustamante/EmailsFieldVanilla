@@ -1,4 +1,5 @@
 import { createEmailBubble } from "./EmailBubble";
+import isIE11 from "../utils/isIE11";
 
 function handleFieldChange(e) {
   var field = document.getElementById(e.target.getAttribute("id"));
@@ -11,11 +12,27 @@ function handleFieldChange(e) {
     // Netscape/Firefox/Opera
     keynum = e.which;
   }
-  if (keynum == 9 || keynum == 32 || keynum == 188 || keynum == 13) {
-    if (fieldValue.length) {
-      createEmailBubble(fieldValue);
+  if (fieldValue.length) {
+    switch (keynum) {
+      case 9:
+      case 13:
+        createEmailBubble(fieldValue);
+        field.value = "";
+        break;
+      case 32:
+        if (isIE11())
+          fieldValue = fieldValue.substring(0, fieldValue.length - 1);
+        createEmailBubble(fieldValue);
+        field.value = "";
+        break;
+      case 188:
+        fieldValue = fieldValue.substring(0, fieldValue.length - 1);
+        createEmailBubble(fieldValue);
+        field.value = "";
+        break;
+      default:
+        break;
     }
-    field.value = "";
   }
 }
 

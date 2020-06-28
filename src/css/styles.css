@@ -104,6 +104,10 @@
   min-width: 30%;
 }
 
+.emailsInput::-ms-clear {
+  display: none;
+}
+
 .emailButtonsContainer {
   padding: 24px 50px 32px;
 }

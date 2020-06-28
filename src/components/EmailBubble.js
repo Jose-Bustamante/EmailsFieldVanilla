@@ -1,8 +1,8 @@
 import isValidEmailCheck from "../utils/isValidEmail";
+import isIE11 from "../utils/isIE11";
 
 export function createEmailBubble(fieldValue) {
   var isValidEmail = isValidEmailCheck(fieldValue);
-
   var bubble = document.createElement("div");
 
   if (isValidEmail) {
@@ -15,9 +15,12 @@ export function createEmailBubble(fieldValue) {
     window.emailFieldComponent.default.emailList = window.emailFieldComponent.default.emailList.filter(
       (e) => e !== fieldValue
     );
-    bubble.remove();
+    if (isIE11()) bubble.parentNode.removeChild(bubble);
+    else bubble.remove();
     return false;
   };
-  document.getElementById("emailsField").prepend(bubble);
+  document
+    .getElementById("emailTextField")
+    .insertAdjacentElement("beforebegin", bubble);
   window.emailFieldComponent.default.emailList.push(fieldValue);
 }
