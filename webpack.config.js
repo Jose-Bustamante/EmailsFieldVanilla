@@ -13,6 +13,24 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: {
+          presets: [
+            [
+              "@babel/preset-env",
+              {
+                targets: {
+                  ie: 11,
+                },
+              },
+            ],
+          ],
+          plugins: [["@babel/plugin-transform-runtime"]],
+        },
+      },
     ],
   },
   devServer: {
