@@ -1,7 +1,7 @@
 import isValidEmailCheck from "../utils/isValidEmail";
 import { checkBrowser } from "../utils/browserUtils";
 
-export function createEmailBubble(fieldValue) {
+export function createEmailBubble(fieldValue, id) {
   var isValidEmail = isValidEmailCheck(fieldValue);
   var bubble = document.createElement("div");
 
@@ -12,15 +12,16 @@ export function createEmailBubble(fieldValue) {
   bubble.innerHTML = fieldValue;
 
   bubble.onclick = function () {
-    window.emailFieldComponent.default.emailList = window.emailFieldComponent.default.emailList.filter(
-      (e) => e !== fieldValue
-    );
+    window.emailFieldComponent[id].emailList = window.emailFieldComponent[
+      id
+    ].emailList.filter((e) => e !== fieldValue);
     if (checkBrowser() === "IE11") bubble.parentNode.removeChild(bubble);
     else bubble.remove();
     return false;
   };
+  console.log("AQUI --<> ", id);
   document
-    .getElementById("emailTextField")
+    .getElementById(`emailTextField${id}`)
     .insertAdjacentElement("beforebegin", bubble);
-  window.emailFieldComponent.default.emailList.push(fieldValue);
+  window.emailFieldComponent[id].emailList.push(fieldValue);
 }

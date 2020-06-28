@@ -4,6 +4,7 @@
   box-sizing: border-box;
   border-radius: 8px;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  margin-top: 50px;
 }
 
 .emailContainer {
@@ -46,6 +47,8 @@
 
 .emailBublesInvalid {
   background: white;
+  border-radius: 0;
+  border-bottom: red dashed 1px;
 }
 
 .emailBublesValid {

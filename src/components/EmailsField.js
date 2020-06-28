@@ -1,7 +1,7 @@
 import { createEmailBubble } from "./EmailBubble";
 import { checkBrowser } from "../utils/browserUtils";
 
-function handleFieldChange(e) {
+function handleFieldChange(e, id) {
   var field = document.getElementById(e.target.getAttribute("id"));
   var fieldValue = e.target.value;
   var keynum;
@@ -16,7 +16,7 @@ function handleFieldChange(e) {
     switch (keynum) {
       case 9:
       case 13:
-        createEmailBubble(fieldValue);
+        createEmailBubble(fieldValue, id);
         field.value = "";
         break;
       case 32:
@@ -24,14 +24,14 @@ function handleFieldChange(e) {
           const browser = checkBrowser();
           if (browser === "IE11" || browser === "Firefox")
             fieldValue = fieldValue.substring(0, fieldValue.length - 1);
-          createEmailBubble(fieldValue);
+          createEmailBubble(fieldValue, id);
         }
         field.value = "";
         break;
       case 188:
         if (fieldValue !== ",") {
           fieldValue = fieldValue.substring(0, fieldValue.length - 1);
-          createEmailBubble(fieldValue);
+          createEmailBubble(fieldValue, id);
         }
         field.value = "";
         break;
@@ -41,17 +41,17 @@ function handleFieldChange(e) {
   }
 }
 
-function handleOnBlur(e) {
+function handleOnBlur(e, id) {
   var fieldValue = e.target.value;
   if (fieldValue.length) {
     var field = document.getElementById(e.target.getAttribute("id"));
 
-    createEmailBubble(fieldValue);
+    createEmailBubble(fieldValue, id);
     field.value = "";
   }
 }
 
-function handlePaste(e) {
+function handlePaste(e, id) {
   var pastedText = "";
   if (typeof e.clipboardData === "undefined")
     // IE11 & Edge support
@@ -63,12 +63,12 @@ function handlePaste(e) {
   var field = document.getElementById(e.target.getAttribute("id"));
 
   for (var i = 0, len = pastedTestArray.length; i !== len; i++) {
-    createEmailBubble(pastedTestArray[i]);
+    createEmailBubble(pastedTestArray[i], id);
   }
   field.value = "";
 }
 
-export function createEmailsField() {
+export function createEmailsField(id) {
   var emailsField = document.createElement("div");
   var emailsInput = document.createElement("input");
 
@@ -81,22 +81,22 @@ export function createEmailsField() {
 
   emailsInput.setAttribute("class", "emailsInput");
   emailsInput.setAttribute("type", "email");
-  emailsInput.setAttribute("id", "emailTextField");
+  emailsInput.setAttribute("id", `emailTextField${id}`);
   emailsInput.onkeyup = function (e) {
-    handleFieldChange(e);
+    handleFieldChange(e, id);
     return false;
   };
   emailsInput.onblur = function (e) {
-    handleOnBlur(e);
+    handleOnBlur(e, id);
     return false;
   };
   emailsInput.onpaste = function (e) {
-    handlePaste(e);
+    handlePaste(e, id);
     return false;
   };
 
   emailsInput.setAttribute("multiple", "true");
 
   emailsField.appendChild(emailsInput);
-  document.getElementById("emailContainer").appendChild(emailsField);
+  document.getElementById(`emailContainer${id}`).appendChild(emailsField);
 }

@@ -1,12 +1,13 @@
-export function createButton(id, text, onclick) {
+export function createButton(text, onclick, appendToId) {
   var button = document.createElement("button");
-  button.id = id;
   button.setAttribute("content", text);
   button.onclick = function () {
-    onclick();
+    onclick(appendToId);
     return false;
   };
   button.setAttribute("class", "emailButtons");
   button.innerHTML = text;
-  document.getElementById("emailButtonsContainer").appendChild(button);
+  document
+    .getElementById(`emailButtonsContainer${appendToId}`)
+    .appendChild(button);
 }

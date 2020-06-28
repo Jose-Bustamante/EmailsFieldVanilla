@@ -5,45 +5,52 @@ import { createEmailBubble } from "./components/EmailBubble";
 import isValidEmailCheck from "./utils/isValidEmail";
 
 window.emailFieldComponent = {
-  default: {
-    emailList: [],
-  },
-  initComponent: () => console.log("TODO"),
+  initComponent: (id) => initField(id),
 };
 
-function initField() {
+function initField(id = "default") {
+  if (window.emailFieldComponent[id]) {
+    console.log("ID ALREADY EXISTS!!");
+    return null;
+  }
+  window.emailFieldComponent = {
+    [id]: { emailList: [], name: id },
+    ...window.emailFieldComponent,
+  };
+
   var mainWrapper = document.createElement("div");
   mainWrapper.setAttribute("class", "mainWrapper");
-  mainWrapper.setAttribute("id", "mainWrapperEmails");
+  mainWrapper.setAttribute("id", `mainWrapperEmails${id}`);
 
   var emailContainer = document.createElement("div");
   emailContainer.setAttribute("class", "emailContainer");
-  emailContainer.setAttribute("id", "emailContainer");
+  emailContainer.setAttribute("id", `emailContainer${id}`);
   emailContainer.innerHTML +=
     '<span class="headerText">Share <b>Board name</b> with others</span>';
 
   var emailButtonsContainer = document.createElement("div");
   emailButtonsContainer.setAttribute("class", "emailButtonsContainer");
-  emailButtonsContainer.setAttribute("id", "emailButtonsContainer");
+  emailButtonsContainer.setAttribute("id", `emailButtonsContainer${id}`);
 
   mainWrapper.appendChild(emailContainer);
   mainWrapper.appendChild(emailButtonsContainer);
   document.body.appendChild(mainWrapper);
+
+  createEmailsField(id);
+  createButton("Add Email", addRandomEmail, id);
+  createButton("Get Emails Count", getEmails, id);
 }
 
-function addRandomEmail() {
+function addRandomEmail(id) {
   const emailText = Math.random().toString(36).substring(2, 11) + "@email.com";
-  createEmailBubble(emailText);
+  createEmailBubble(emailText, id);
 }
 
-function getEmails() {
+function getEmails(id) {
   var validEmails = [];
-  for (
-    var i = 0, len = window.emailFieldComponent.default.emailList.length;
-    i !== len;
-    i++
-  ) {
-    var email = window.emailFieldComponent.default.emailList[i];
+  var emailList = window.emailFieldComponent[id].emailList;
+  for (var i = 0, len = emailList.length; i !== len; i++) {
+    var email = emailList[i];
     if (isValidEmailCheck(email)) validEmails.push(email);
   }
   alert(validEmails);
@@ -52,7 +59,4 @@ function getEmails() {
 // Loading function
 document.addEventListener("DOMContentLoaded", function () {
   initField();
-  createEmailsField();
-  createButton("button1", "Add Email", addRandomEmail);
-  createButton("button2", "Get Emails Count", getEmails);
 });
