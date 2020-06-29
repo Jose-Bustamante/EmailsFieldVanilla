@@ -4,9 +4,10 @@
   "description": "Is like :mind_blown: you can click it, scroll it, resize it, it does everything am iPhone can do and more.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "webpack-dev-server --mode development",
-    "build": "npx webpack --config webpack.config.js --mode production"
+    "build": "npx webpack --config webpack.config.js --mode production",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -19,16 +20,56 @@
     "url": "https://github.com/jose-bustamante/EmailsFieldVanilla/issues"
   },
   "homepage": "https://github.com/jose-bustamante/EmailsFieldVanilla#readme",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "jsdom",
+    "roots": [
+      "src"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css"
+    },
+    "coverageDirectory": "test_output/coverage",
+    "collectCoverageFrom": [
+      "**/*.{js,}",
+      "!src/css/*"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 60,
+        "branches": 40,
+        "functions": 50,
+        "lines": 60
+      }
+    },
+    "testRegex": "tests/.*\\.test\\.js$"
+  },
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/plugin-transform-runtime": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
+    "babel-jest": "^26.1.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.6.0",
+    "jest": "^26.1.0",
+    "jsdom": "^16.2.2",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "jest-transform-css": "^2.0.0"
+  }
 }

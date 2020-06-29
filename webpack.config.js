@@ -8,6 +8,10 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   module: {
+    loaders: [
+      { exclude: ["node_modules"], loader: "babel", test: /\.jsx?$/ },
+      { loader: "style-loader!css-loader", test: /\.css$/ },
+    ],
     rules: [
       {
         test: /\.css$/,

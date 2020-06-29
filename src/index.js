@@ -8,7 +8,7 @@ window.emailFieldComponent = {
   initComponent: (id) => initField(id),
 };
 
-function initField(id = "default") {
+export function initField(id = "default") {
   if (window.emailFieldComponent[id]) {
     console.log("ID ALREADY EXISTS!!");
     return null;
