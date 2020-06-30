@@ -70,8 +70,6 @@ function handlePaste(e, id) {
 
 export function createEmailsField(id) {
   var emailsField = document.createElement("div");
-  var emailsInput = document.createElement("input");
-
   emailsField.setAttribute("class", "emailBox");
   emailsField.setAttribute("id", "emailsField");
   emailsField.onclick = function () {
@@ -79,6 +77,7 @@ export function createEmailsField(id) {
     return false;
   };
 
+  var emailsInput = document.createElement("input");
   emailsInput.setAttribute("class", "emailsInput");
   emailsInput.setAttribute("type", "email");
   emailsInput.setAttribute("id", `emailTextField${id}`);

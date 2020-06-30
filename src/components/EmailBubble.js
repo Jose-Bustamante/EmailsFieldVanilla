@@ -9,6 +9,7 @@ export function createEmailBubble(fieldValue, id) {
     bubble.setAttribute("class", "emailBubles emailBublesValid");
   } else bubble.setAttribute("class", "emailBubles emailBublesInvalid");
 
+  bubble.setAttribute("id", `emailBuble${id}${fieldValue}`);
   bubble.innerHTML = fieldValue;
 
   bubble.onclick = function () {
@@ -19,7 +20,6 @@ export function createEmailBubble(fieldValue, id) {
     else bubble.remove();
     return false;
   };
-  console.log("AQUI --<> ", id);
   document
     .getElementById(`emailTextField${id}`)
     .insertAdjacentElement("beforebegin", bubble);

@@ -10,8 +10,7 @@ window.emailFieldComponent = {
 
 export function initField(id = "default") {
   if (window.emailFieldComponent[id]) {
-    console.log("ID ALREADY EXISTS!!");
-    return null;
+    throw new Error("ID is in use");
   }
   window.emailFieldComponent = {
     [id]: { emailList: [], name: id },

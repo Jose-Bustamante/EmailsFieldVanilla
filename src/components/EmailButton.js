@@ -6,6 +6,7 @@ export function createButton(text, onclick, appendToId) {
     return false;
   };
   button.setAttribute("class", "emailButtons");
+  button.setAttribute("id", `emailButtons${text}${appendToId}`);
   button.innerHTML = text;
   document
     .getElementById(`emailButtonsContainer${appendToId}`)
