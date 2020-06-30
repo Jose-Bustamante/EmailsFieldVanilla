@@ -34,13 +34,26 @@ This component is way too good to be used, please DON'T, side effects may apply,
 - local development
 
 ```
-npm run start:dev
+npm run start
 ```
 
 - build
 
 ```
 npm run build
+```
+
+- test with coverage
+
+```
+npm run test
+
+```
+- test watch mode
+
+```
+npm run test:watch
+
 ```
 
 ## Version History
