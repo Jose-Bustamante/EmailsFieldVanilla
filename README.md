@@ -2,7 +2,7 @@
 
 Is like 🤯 you can click it, scroll it, resize it, it does everything am iPhone can do and more.
 Example [Git Pages](https://jose-bustamante.github.io/EmailsFieldVanilla/) 
-Once in Git Pages, click here to view the demo [component](./dist/index.html)
+Click here to view the demo [component](https://jose-bustamante.github.io/EmailsFieldVanilla/dist/index.html)
 
 ## Description
 
