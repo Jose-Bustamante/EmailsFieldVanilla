@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">93.75% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/15</span>
+                <span class='fraction'>15/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/14</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -83,31 +83,33 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import isValidEmailCheck from "../utils/isValidEmail";
 import { checkBrowser } from "../utils/browserUtils";
@@ -116,19 +118,20 @@ export function createEmailBubble(fieldValue, id) {
   var isValidEmail = isValidEmailCheck(fieldValue);
   var bubble = document.createElement("div");
 &nbsp;
-  <span class="missing-if-branch" title="else path not taken" >E</span>if (isValidEmail) {
+  if (isValidEmail) {
     bubble.setAttribute("class", "emailBubles emailBublesValid");
-  } else <span class="cstat-no" title="statement not covered" >bubble.setAttribute("class", "emailBubles emailBublesInvalid");</span>
+  } else bubble.setAttribute("class", "emailBubles emailBublesInvalid");
 &nbsp;
+  bubble.setAttribute("id", `emailBuble${id}${fieldValue}`);
   bubble.innerHTML = fieldValue;
 &nbsp;
-  bubble.onclick = <span class="fstat-no" title="function not covered" >fu</span>nction () {
-<span class="cstat-no" title="statement not covered" >    window.emailFieldComponent[id].emailList = window.emailFieldComponent[</span>
+  bubble.onclick = function () {
+    window.emailFieldComponent[id].emailList = window.emailFieldComponent[
       id
-    ].emailList.filter(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >e !== fieldValue)</span>;
-<span class="cstat-no" title="statement not covered" >    if (checkBrowser() === "IE11") <span class="cstat-no" title="statement not covered" >bubble.parentNode.removeChild(bubble);</span></span>
-    else <span class="cstat-no" title="statement not covered" >bubble.remove();</span>
-<span class="cstat-no" title="statement not covered" >    return false;</span>
+    ].emailList.filter((e) =&gt; e !== fieldValue);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (checkBrowser() === "IE11") <span class="cstat-no" title="statement not covered" >bubble.parentNode.removeChild(bubble);</span>
+    else bubble.remove();
+    return false;
   };
   document
     .getElementById(`emailTextField${id}`)
@@ -142,7 +145,7 @@ export function createEmailBubble(fieldValue, id) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Jun 30 2020 20:21:23 GMT+0200 (Central European Summer Time)
+                at Tue Jun 30 2020 21:03:52 GMT+0200 (Central European Summer Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

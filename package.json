@@ -4,7 +4,7 @@
   "description": "Is like :mind_blown: you can click it, scroll it, resize it, it does everything am iPhone can do and more.",
   "main": "index.js",
   "scripts": {
-    "start:dev": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development",
     "build": "npx webpack --config webpack.config.js --mode production",
     "test": "jest --coverage",
     "test:watch": "jest --watch"

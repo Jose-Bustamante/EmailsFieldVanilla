@@ -22,6 +22,21 @@ describe("EmailField", () => {
         return "test@asd.com";
       },
     };
-    emailField.onpaste({ target: emailField }, "test@asd.com");
+    emailField.onpaste({ target: emailField });
+    emailField.value = "test2@asd.com";
+    emailField.onkeyup({ target: emailField, which: 13 }, componentId);
+    emailField.value = "test3@asd.com";
+    emailField.onkeyup({ target: emailField, which: 32 }, componentId);
+    emailField.value = "test4@@asd.com";
+    emailField.onkeyup({ target: emailField, which: 188 }, componentId);
+    emailField.value = "test5@asd.com";
+    emailField.onblur({ target: emailField });
+
+    const bubbles = document.getElementsByClassName("emailBubles");
+    console.log(bubbles.length);
+    expect(bubbles.length).toBe(5);
+
+    bubbles[0].click();
+    expect(bubbles.length).toBe(4);
   });
 });
