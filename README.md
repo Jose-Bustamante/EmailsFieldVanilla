@@ -1,7 +1,7 @@
 # Email Magician
 
 Is like 🤯 you can click it, scroll it, resize it, it does everything am iPhone can do and more.
-Example [Demo](./dist/index.html)
+[Git Pages](https://jose-bustamante.github.io/EmailsFieldVanilla/) [Demo from gitPages](./dist/index.html)
 
 ## Description
 
